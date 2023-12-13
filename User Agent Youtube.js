@@ -5,7 +5,7 @@
 // @description  Cambia el User-Agent en YouTube, excepto en music.youtube
 // @author       Saturnx-dev
 // @match        *://www.youtube.com/*
-// @exclude      *://music.youtube.com/*
+// @exclude      *://*music.youtube.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const userAgentURL = 'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20List.txt';
+    const userAgentURL = 'https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%20Agents%20List.txt';
 
     // Verifica si la URL actual no es music.youtube
     if (!window.location.href.includes('music.youtube')) {
@@ -51,10 +51,12 @@
                     }
                 } else {
                     console.error('Error al cargar la lista de User-Agents');
+                    // Puedes agregar una notificación o indicación visual aquí
                 }
             },
             onerror: function(error) {
                 console.error('Error al cargar la lista de User-Agents', error);
+                // Puedes agregar una notificación o indicación visual aquí
             }
         });
     }
