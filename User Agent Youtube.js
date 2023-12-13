@@ -16,9 +16,31 @@
 
     // Lista de URLs de archivos JSON en GitHub
     const userAgentURLs = [
-        'https://raw.githubusercontent.com/NombreUsuario/Repositorio/main/ruta/al/archivo1.json',
-        'https://raw.githubusercontent.com/NombreUsuario/Repositorio/main/ruta/al/archivo2.json',
-        // Agrega las demás URLs aquí
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(1).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(2).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(3).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(4).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(5).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(6).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(7).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(8).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(9).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(10).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(11).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(12).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(13).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(14).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(15).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(16).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(17).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(18).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(19).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(20).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(21).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(22).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(23).json',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(24).json'
+
     ];
 
     // Verifica si la URL actual no es music.youtube
