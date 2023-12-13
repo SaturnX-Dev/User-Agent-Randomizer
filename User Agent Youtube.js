@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         By pass YouTube
-// @namespace    http://tampermonkey.net/
+// @name         User Agent Youtube
+// @namespace    https://github.com/SaturnX-Dev/User-Agent-Youtube
 // @version      0.1
 // @description  Cambia el User-Agent en YouTube, excepto en music.youtube
 // @author       Saturnx-dev
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const userAgentURL = 'https://tu-nueva-ruta/user-agents.txt'; // Cambia esta URL a la nueva fuente de User-Agents
+    const userAgentURL = 'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20List.txt';
 
     // Verifica si la URL actual no es music.youtube
     if (!window.location.href.includes('music.youtube')) {
