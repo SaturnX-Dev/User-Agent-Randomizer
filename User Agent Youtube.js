@@ -14,50 +14,63 @@
 (function() {
     'use strict';
 
-    const userAgentURL = 'https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%20Agents%20List.txt';
+    // Lista de URLs de archivos JSON en GitHub
+    const userAgentURLs = [
+        'https://raw.githubusercontent.com/NombreUsuario/Repositorio/main/ruta/al/archivo1.json',
+        'https://raw.githubusercontent.com/NombreUsuario/Repositorio/main/ruta/al/archivo2.json',
+        // Agrega las demás URLs aquí
+    ];
 
     // Verifica si la URL actual no es music.youtube
     if (!window.location.href.includes('music.youtube')) {
-        // Descarga la lista de User-Agents
-        GM_xmlhttpRequest({
-            method: 'GET',
-            url: userAgentURL,
-            onload: function(response) {
-                if (response.status === 200) {
-                    const userAgents = response.responseText.split('\n').filter(Boolean);
-                    const usedUserAgents = GM_getValue('usedUserAgents', []);
+        // Descarga las listas de User-Agents desde archivos JSON en GitHub
+        userAgentURLs.forEach(url => {
+            GM_xmlhttpRequest({
+                method: 'GET',
+                url: url,
+                onload: function(response) {
+                    if (response.status === 200) {
+                        try {
+                            const userAgentsData = JSON.parse(response.responseText);
+                            const userAgents = userAgentsData.userAgents || [];
+                            const usedUserAgents = GM_getValue('usedUserAgents', []);
 
-                    // Filtra User-Agents que ya se han utilizado
-                    const availableUserAgents = userAgents.filter(agent => !usedUserAgents.includes(agent));
+                            // Filtra User-Agents que ya se han utilizado
+                            const availableUserAgents = userAgents.filter(agent => !usedUserAgents.includes(agent));
 
-                    // Si no hay User-Agents disponibles, reinicia la lista de utilizados
-                    if (availableUserAgents.length === 0) {
-                        GM_setValue('usedUserAgents', []);
+                            // Si no hay User-Agents disponibles, reinicia la lista de utilizados
+                            if (availableUserAgents.length === 0) {
+                                GM_setValue('usedUserAgents', []);
+                            } else {
+                                // Elige aleatoriamente un User-Agent no utilizado
+                                const selectedUserAgent = availableUserAgents[Math.floor(Math.random() * availableUserAgents.length)];
+
+                                // Almacena el User-Agent seleccionado en la lista de utilizados
+                                usedUserAgents.push(selectedUserAgent);
+                                GM_setValue('usedUserAgents', usedUserAgents);
+
+                                // Cambia el User-Agent
+                                Object.defineProperty(navigator, 'userAgent', {
+                                    value: selectedUserAgent,
+                                    writable: false,
+                                    configurable: false,
+                                    enumerable: true
+                                });
+                            }
+                        } catch (error) {
+                            console.error('Error al analizar el archivo JSON', error);
+                            // Puedes agregar una notificación o indicación visual aquí
+                        }
                     } else {
-                        // Elige aleatoriamente un User-Agent no utilizado
-                        const selectedUserAgent = availableUserAgents[Math.floor(Math.random() * availableUserAgents.length)];
-
-                        // Almacena el User-Agent seleccionado en la lista de utilizados
-                        usedUserAgents.push(selectedUserAgent);
-                        GM_setValue('usedUserAgents', usedUserAgents);
-
-                        // Cambia el User-Agent
-                        Object.defineProperty(navigator, 'userAgent', {
-                            value: selectedUserAgent,
-                            writable: false,
-                            configurable: false,
-                            enumerable: true
-                        });
+                        console.error('Error al cargar el archivo JSON de User-Agents desde GitHub', url);
+                        // Puedes agregar una notificación o indicación visual aquí
                     }
-                } else {
-                    console.error('Error al cargar la lista de User-Agents');
+                },
+                onerror: function(error) {
+                    console.error('Error al cargar el archivo JSON de User-Agents desde GitHub', url, error);
                     // Puedes agregar una notificación o indicación visual aquí
                 }
-            },
-            onerror: function(error) {
-                console.error('Error al cargar la lista de User-Agents', error);
-                // Puedes agregar una notificación o indicación visual aquí
-            }
+            });
         });
     }
 })();
