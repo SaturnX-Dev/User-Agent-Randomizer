@@ -33,14 +33,17 @@ Este proyecto es un script de Tampermonkey diseñado para cambiar el User-Agent 
 
 1. Asegúrate de tener [Tampermonkey](https://www.tampermonkey.net/) instalado en tu navegador.
 
-2. Haz clic para instalar el script automáticamente.
+2. Haz clic para Visualizar el script:
+   [![Visualizar Script](https://img.shields.io/badge/Copiar%20Script-1abc9c.svg)](https://github.com/SaturnX-Dev/User-Agent-Randomizer/raw/main/User-Agent-Randomizer.js)
 
-[![Instalar con Tampermonkey](https://img.shields.io/badge/Instalar%20con-Tampermonkey-1abc9c.svg)](https://github.com/SaturnX-Dev/User-Agent-Randomizer/raw/main/User-Agent-Randomizer.js)
+3. Abre Tampermonkey y haz clic en el ícono del menú.
 
+4. Selecciona "Crear un nuevo script".
 
-4. Puedes configurar el User-Agent seleccionando la opción "Configurar User Agent (Aleatorio)" en el menú de Tampermonkey.
+5. Pega el script copiado en el editor y guarda los cambios.
 
-5. Disfruta de cambiar aleatoriamente tu User-Agent en sitios web.
+6. ¡Listo! Ahora puedes configurar el User-Agent y disfrutar de cambiarlo aleatoriamente en sitios web.
+
 
 
 
