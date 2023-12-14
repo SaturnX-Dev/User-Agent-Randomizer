@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         User Agent Youtube
 // @namespace    https://github.com/SaturnX-Dev/User-Agent-Youtube
-// @version      0.3
+// @version      0.4
 // @description  Cambia el User-Agent en YouTube, excepto en music.youtube
 // @author       Saturnx-dev
 // @match        *://www.youtube.com/*
@@ -9,12 +9,20 @@
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @connect      github.com
+// @connect      raw.githubusercontent.com
 // @downloadURL  https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%20Agent%20Youtube.js
 // @updateURL    https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%20Agent%20Youtube.js
+// @menu         Set User Agent
+// @require      https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.2/babel.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.16.0/polyfill.js
 // ==/UserScript==
 
-(function() {
+(() => {
     'use strict';
+
+    // Obtener el User-Agent personalizado de la configuración
+    const customUserAgent = GM_getValue('customUserAgent', '');
 
     // Lista de URLs de archivos de texto en GitHub
     const userAgentURLs = [
@@ -35,6 +43,11 @@
                             // Dividir el contenido del archivo de texto en líneas
                             const userAgents = response.responseText.split('\n');
                             const usedUserAgents = GM_getValue('usedUserAgents', []);
+
+                            // Si hay un User-Agent personalizado, agrégalo a la lista
+                            if (customUserAgent) {
+                                userAgents.unshift(customUserAgent);
+                            }
 
                             // Filtra User-Agents que ya se han utilizado
                             const availableUserAgents = userAgents.filter(agent => !usedUserAgents.includes(agent.trim()));
@@ -79,5 +92,22 @@
                 }
             });
         });
+    }
+
+    // Configuración del menú
+    const menuConfig = GM_info.scriptMetaStr.match(/@menu\s+(.+)/);
+    if (menuConfig) {
+        const menuData = JSON.parse(menuConfig[1]);
+        const setUserAgentMenuItem = menuData.submenu.find(item => item.name === 'Set User Agent');
+        
+        if (setUserAgentMenuItem) {
+            // Añade un evento para actualizar el User-Agent al cambiar el valor en el menú
+            setUserAgentMenuItem.onchange = function(value) {
+                GM_setValue('customUserAgent', value);
+            };
+
+            // Establece el valor predeterminado del menú según el User-Agent personalizado actual
+            setUserAgentMenuItem.default = customUserAgent;
+        }
     }
 })();
