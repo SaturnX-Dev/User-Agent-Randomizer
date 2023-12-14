@@ -47,6 +47,7 @@ Este proyecto es un script de Tampermonkey diseñado para cambiar el User-Agent 
 
 
 
+
 ## Contribuciones
 
 Si deseas contribuir a este proyecto, siéntete libre de abrir un problema o enviar una solicitud de extracción. Estamos abiertos a mejoras y correcciones de errores.
