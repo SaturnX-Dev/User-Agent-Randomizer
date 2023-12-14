@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         User Agent Youtube
 // @namespace    https://github.com/SaturnX-Dev/User-Agent-Youtube
-// @version      0.5
+// @version      0.6
 // @description  Cambia el User-Agent en YouTube, excepto en music.youtube
 // @author       Saturnx-dev
 // @match        *://www.youtube.com/*
