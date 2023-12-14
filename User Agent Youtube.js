@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         User Agent Youtube
 // @namespace    https://github.com/SaturnX-Dev/User-Agent-Youtube
-// @version      0.1
+// @version      0.2
 // @description  Cambia el User-Agent en YouTube, excepto en music.youtube
 // @author       Saturnx-dev
 // @match        *://www.youtube.com/*
@@ -9,6 +9,7 @@
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @downloadURL  https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%
 // ==/UserScript==
 
 (function() {
@@ -16,8 +17,8 @@
 
     // Lista de URLs de archivos de texto en GitHub
     const userAgentURLs = [
-        'https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User_Agents_List_1.txt',
-        'https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User_Agents_List_2.txt'
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20List/MacOsX.txt',
+        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20List/Windows.txt'
     ];
 
     // Verifica si la URL actual no es music.youtube
@@ -46,6 +47,12 @@
 
                                 // Almacena el User-Agent seleccionado en la lista de utilizados
                                 usedUserAgents.push(selectedUserAgent);
+                                
+                                // Limita la lista de utilizados a las últimas 20 entradas
+                                if (usedUserAgents.length > 20) {
+                                    usedUserAgents.shift();
+                                }
+
                                 GM_setValue('usedUserAgents', usedUserAgents);
 
                                 // Cambia el User-Agent
