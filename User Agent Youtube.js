@@ -14,38 +14,15 @@
 (function() {
     'use strict';
 
-    // Lista de URLs de archivos JSON en GitHub
+    // Lista de URLs de archivos de texto en GitHub
     const userAgentURLs = [
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(1).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(2).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(3).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(4).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(5).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(6).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(7).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(8).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(9).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(10).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(11).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(12).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(13).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(14).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(15).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(16).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(17).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(18).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(19).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(20).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(21).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(22).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(23).json',
-        'https://github.com/SaturnX-Dev/User-Agent-Youtube/blob/main/User%20Agents%20Lists/User_Agents%20(24).json'
-
+        'https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User_Agents_List_1.txt',
+        'https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User_Agents_List_2.txt'
     ];
 
     // Verifica si la URL actual no es music.youtube
     if (!window.location.href.includes('music.youtube')) {
-        // Descarga las listas de User-Agents desde archivos JSON en GitHub
+        // Descarga las listas de User-Agents desde archivos de texto en GitHub
         userAgentURLs.forEach(url => {
             GM_xmlhttpRequest({
                 method: 'GET',
@@ -53,19 +30,19 @@
                 onload: function(response) {
                     if (response.status === 200) {
                         try {
-                            const userAgentsData = JSON.parse(response.responseText);
-                            const userAgents = userAgentsData.userAgents || [];
+                            // Dividir el contenido del archivo de texto en líneas
+                            const userAgents = response.responseText.split('\n');
                             const usedUserAgents = GM_getValue('usedUserAgents', []);
 
                             // Filtra User-Agents que ya se han utilizado
-                            const availableUserAgents = userAgents.filter(agent => !usedUserAgents.includes(agent));
+                            const availableUserAgents = userAgents.filter(agent => !usedUserAgents.includes(agent.trim()));
 
                             // Si no hay User-Agents disponibles, reinicia la lista de utilizados
                             if (availableUserAgents.length === 0) {
                                 GM_setValue('usedUserAgents', []);
                             } else {
                                 // Elige aleatoriamente un User-Agent no utilizado
-                                const selectedUserAgent = availableUserAgents[Math.floor(Math.random() * availableUserAgents.length)];
+                                const selectedUserAgent = availableUserAgents[Math.floor(Math.random() * availableUserAgents.length)].trim();
 
                                 // Almacena el User-Agent seleccionado en la lista de utilizados
                                 usedUserAgents.push(selectedUserAgent);
@@ -80,16 +57,16 @@
                                 });
                             }
                         } catch (error) {
-                            console.error('Error al analizar el archivo JSON', error);
+                            console.error('Error al procesar el archivo de texto', error);
                             // Puedes agregar una notificación o indicación visual aquí
                         }
                     } else {
-                        console.error('Error al cargar el archivo JSON de User-Agents desde GitHub', url);
+                        console.error('Error al cargar el archivo de texto de User-Agents desde GitHub', url);
                         // Puedes agregar una notificación o indicación visual aquí
                     }
                 },
                 onerror: function(error) {
-                    console.error('Error al cargar el archivo JSON de User-Agents desde GitHub', url, error);
+                    console.error('Error al cargar el archivo de texto de User-Agents desde GitHub', url, error);
                     // Puedes agregar una notificación o indicación visual aquí
                 }
             });
