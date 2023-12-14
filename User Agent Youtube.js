@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         User Agent Youtube
 // @namespace    https://github.com/SaturnX-Dev/User-Agent-Youtube
-// @version      0.4
+// @version      0.5
 // @description  Cambia el User-Agent en YouTube, excepto en music.youtube
 // @author       Saturnx-dev
 // @match        *://www.youtube.com/*
@@ -13,9 +13,7 @@
 // @connect      raw.githubusercontent.com
 // @downloadURL  https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%20Agent%20Youtube.js
 // @updateURL    https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Youtube/main/User%20Agent%20Youtube.js
-// @menu         Set User Agent
-// @require      https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.2/babel.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.16.0/polyfill.js
+// @menu         {"name": "Set User Agent", "label": "Set User Agent"}
 // ==/UserScript==
 
 (() => {
