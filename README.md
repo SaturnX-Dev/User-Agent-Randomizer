@@ -35,11 +35,7 @@ Este proyecto es un script de Tampermonkey diseñado para cambiar el User-Agent 
 
 2. Haz clic para instalar el script automáticamente.
 
-| Userscript Wiki                        | ![][ico] | Direct<br>Install | Sites                 | Added      | Updated    |
-	|----------------------------------------|:---:|:------------------:|:-------------------------:|:----------:|:----------:|
-	| [GitHub code colors][ccr-wiki]         |     | [install][ccr-raw] | [GF][ccr-gf] [OU][ccr-ou] | 2016.03.20 | 2022.10.24 |
-   [ccr-wiki]: https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-code-colors
-[ccs-wiki]: https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-copy-code-snippet
+[![Instalar con Tampermonkey](https://img.shields.io/badge/Instalar%20con-Tampermonkey-1abc9c.svg)](https://www.tampermonkey.net/?ext=dhdg&url=https://raw.githubusercontent.com/SaturnX-Dev/User-Agent-Randomizer/main/User-Agent-Randomizer.js)
 
 4. Puedes configurar el User-Agent seleccionando la opción "Configurar User Agent (Aleatorio)" en el menú de Tampermonkey.
 
